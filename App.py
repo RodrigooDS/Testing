@@ -31,7 +31,7 @@ def add_contact():
         dv = request.form['dv']
         email = request.form['email']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (nombre, rut, dv,email) VALUES (%s,%s,%s,%s)", (nombre, rut, dv, email))
+        cur.execute("INSERT INTO contacts (nombre, rut, dv, email) VALUES (%s,%s,%s,%s)", (nombre, rut, dv, email))
         mysql.connection.commit()
         flash('Contact Added successfully')
         return redirect(url_for('Index'))
