@@ -27,10 +27,10 @@ def Index():
 def add_contact():
     if request.method == 'POST':
         fullname = request.form['fullname']
-        phone = request.form['rut']
-        email = request.form['Dv']
+        rut = request.form['rut']
+        Dv = request.form['Dv']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES (%s,%s,%s)", (fullname, phone, email))
+        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES (%s,%s,%s)", (fullname, rut, Dv))
         mysql.connection.commit()
         flash('Contact Added successfully')
         return redirect(url_for('Index'))
