@@ -26,11 +26,12 @@ def Index():
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
     if request.method == 'POST':
-        fullname = request.form['fullname']
+        nombre = request.form['nombre']
         rut = request.form['rut']
-        Dv = request.form['Dv']
+        dv = request.form['dv']
+        email = request.form['email']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES (%s,%s,%s)", (fullname, rut, Dv))
+        cur.execute("INSERT INTO contacts (nombre, rut, dv,email) VALUES (%s,%s,%s,%s)", (nombre, rut, dv, email))
         mysql.connection.commit()
         flash('Contact Added successfully')
         return redirect(url_for('Index'))
