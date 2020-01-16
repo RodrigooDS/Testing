@@ -33,7 +33,7 @@ def add_contact():
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO contacts (nombre, rut, dv, email) VALUES (%s,%s,%s,%s)", (nombre, rut, dv, email))
         mysql.connection.commit()
-        flash('Contact Added successfully')
+        flash('Contacto agregado')
         return redirect(url_for('Index'))
 
 @app.route('/edit/<id>', methods = ['POST', 'GET'])
@@ -48,18 +48,20 @@ def get_contact(id):
 @app.route('/update/<id>', methods=['POST'])
 def update_contact(id):
     if request.method == 'POST':
-        fullname = request.form['fullname']
-        phone = request.form['phone']
+        nombre = request.form['nombre']
+        rut = request.form['rut']
+        dv = request.form['dv']
         email = request.form['email']
         cur = mysql.connection.cursor()
         cur.execute("""
             UPDATE contacts
-            SET fullname = %s,
-                email = %s,
-                phone = %s
+            SET nombre = %s,
+                rut = %s,
+                dv = %s,
+                email = %s
             WHERE id = %s
-        """, (fullname, email, phone, id))
-        flash('Contact Updated Successfully')
+        """, (nombre, rut, dv, email, id))
+        flash('Contacto actualizado correctamente')
         mysql.connection.commit()
         return redirect(url_for('Index'))
 
